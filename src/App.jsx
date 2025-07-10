@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
-import About from './components/About';
+import About from './components/about';
 import Product from './components/product';
 import Contact from './components/contact';
 import Footer from './components/Footer';
