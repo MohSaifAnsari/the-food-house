@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
-import About from './components/about';
+import About from './components/About';
 import Product from './components/product';
 import Contact from './components/contact';
 import Footer from './components/Footer';
@@ -12,6 +12,7 @@ import Admin from './components/Admin';
 import YourOrders from './components/YourOrders';
 import Register from './components/register';
 import AdminLogin from './components/adminlogin';
+
 
 // Home Component
 const Home = () => (
