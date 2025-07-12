@@ -1,27 +1,30 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Suspense, lazy } from 'react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import Navbar from './components/Navbar';
-import abouttt from './components/abouttt';
-import Product from './components/product';
-import Contact from './components/contact';
-import Footer from './components/Footer';
-import Cart from './components/cart';
-import Address from './components/address';
-import Admin from './components/Admin';
-import YourOrders from './components/YourOrders';
-import Register from './components/register';
-import AdminLogin from './components/adminlogin';
+// Lazy load all large components
+const Navbar = lazy(() => import('./components/Navbar'));
+const Abouttt = lazy(() => import('./components/abouttt'));
+const Product = lazy(() => import('./components/product'));
+const Contact = lazy(() => import('./components/contact'));
+const Footer = lazy(() => import('./components/Footer'));
+const Cart = lazy(() => import('./components/cart'));
+const Address = lazy(() => import('./components/address'));
+const Admin = lazy(() => import('./components/Admin'));
+const YourOrders = lazy(() => import('./components/YourOrders'));
+const Register = lazy(() => import('./components/register'));
+const AdminLogin = lazy(() => import('./components/adminlogin'));
 
-
-// Home Component
+// Home Component (not lazily loaded since it's needed immediately)
 const Home = () => (
-  <>
+  <Suspense fallback={<div className="text-center py-10 text-xl">Loading...</div>}>
     <Navbar />
 
     <div
-      className="relative w-full min-h-screen bg-cover bg-center bg-[url('images/backgrounddd.jpg')]"
+      className="relative w-full min-h-screen bg-cover bg-center"
       id="home"
+      style={{
+        backgroundImage: "url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092?auto=format&fit=crop&w=1600&q=80')",
+      }}
     >
       <div className="absolute inset-0 bg-black bg-opacity-60"></div>
 
@@ -50,7 +53,7 @@ const Home = () => (
     </div>
 
     <section className="bg-white px-4 sm:px-6 md:px-12 py-12" id="about">
-      <About />
+      <Abouttt />
     </section>
 
     <section className="bg-white px-4 sm:px-6 md:px-12 py-12" id="products">
@@ -73,19 +76,19 @@ const Home = () => (
         created by <span className="text-pink-500">👷🏻‍♂️ Er. Saif Ansari</span> | all rights reserved |
       </p>
     </div>
-  </>
+  </Suspense>
 );
 
 // Define routes
 const router = createBrowserRouter([
-  { path: '/', element: <Register /> },
-  { path: '/register', element: <Register /> },
+  { path: '/', element: <Suspense fallback={<div>Loading...</div>}><Register /></Suspense> },
+  { path: '/register', element: <Suspense fallback={<div>Loading...</div>}><Register /></Suspense> },
   { path: '/home', element: <Home /> },
-  { path: '/cart', element: <Cart /> },
-  { path: '/address', element: <Address /> },
-  { path: '/admin-login', element: <AdminLogin /> },
-  { path: '/admin', element: <Admin /> },
-  { path: '/your-orders', element: <YourOrders /> },
+  { path: '/cart', element: <Suspense fallback={<div>Loading...</div>}><Cart /></Suspense> },
+  { path: '/address', element: <Suspense fallback={<div>Loading...</div>}><Address /></Suspense> },
+  { path: '/admin-login', element: <Suspense fallback={<div>Loading...</div>}><AdminLogin /></Suspense> },
+  { path: '/admin', element: <Suspense fallback={<div>Loading...</div>}><Admin /></Suspense> },
+  { path: '/your-orders', element: <Suspense fallback={<div>Loading...</div>}><YourOrders /></Suspense> },
   {
     path: '*',
     element: (
@@ -98,7 +101,7 @@ const router = createBrowserRouter([
   },
 ]);
 
-// ✅ Main App Component
+// Main App Component
 function App() {
   useEffect(() => {
     const interval = setInterval(() => {
