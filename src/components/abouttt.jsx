@@ -1,6 +1,8 @@
-import React from 'react';
+import React from "react";
 
-function About() {
+import React from 'react'
+
+function abouttt() {
   return (
     <section className="about bg-white py-12 px-4 md:px-16" id="about">
       {/* Header Section */}
@@ -45,4 +47,5 @@ function About() {
   );
 }
 
-export default About;
+export default abouttt
+
