@@ -6,7 +6,7 @@ const Navbar = lazy(() => import('./components/Navbar'));
 const Abouttt = lazy(() => import('./components/abouttt'));
 const Product = lazy(() => import('./components/product'));
 const Contact = lazy(() => import('./components/contact'));
-const Footer = lazy(() => import('./components/Footer'));
+const footerr =lazy(()=>import('./components/footerr'))
 const Cart = lazy(() => import('./components/cart'));
 const Address = lazy(() => import('./components/address'));
 const Admin = lazy(() => import('./components/Admin'));
@@ -69,7 +69,7 @@ const Home = () => (
       <Contact />
     </section>
 
-    <Footer />
+    <footerr />
 
     <div className="text-center bg-gray-100 py-6 px-4">
       <p className="text-base sm:text-lg md:text-xl font-semibold text-gray-700">
